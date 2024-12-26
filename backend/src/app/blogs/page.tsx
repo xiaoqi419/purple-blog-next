@@ -5,6 +5,7 @@ import { BsPostage } from "react-icons/bs"
 import { useState } from "react"
 import Link from "next/link"
 
+// 博客管理页
 export default function blogs() {
   // 判断是否有 session，没有则跳转到登录页
   useAuthRedirect()
