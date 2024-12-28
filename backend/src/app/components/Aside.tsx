@@ -53,7 +53,7 @@ export default function Aside() {
           </Link>
           <Link href="/blogs/addBlog">
             <li
-              className={activeLink === "/blog/addBlog" ? "navactive" : ""}
+              className={activeLink === "/blogs/addBlog" ? "navactive" : ""}
               onClick={() => handleLinkClick("/blogs/addBlog")}
             >
               <MdOutlineAddPhotoAlternate />
