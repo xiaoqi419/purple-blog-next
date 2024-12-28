@@ -1,9 +1,11 @@
 "use client"
 import useAuthRedirect from "@/utils/useAuthRedirect"
-import { Input } from "antd"
+import { Button, Input } from "antd"
 import { BsPostage } from "react-icons/bs"
 import { useState } from "react"
 import Link from "next/link"
+import { FaEdit } from "react-icons/fa"
+import { RiDeleteBin6Fill } from "react-icons/ri"
 
 // 博客管理页
 export default function blogs() {
@@ -54,7 +56,17 @@ export default function blogs() {
               <td>slug of the blog</td>
               <td>
                 <div className="flex gap-2 flex-center">
-                  <Link href="/blog/" />
+                  <Link href="/blogs/edit/id">
+                    <Button title="edit">
+                      <FaEdit />
+                    </Button>
+                  </Link>
+                  <Link href="/blogs/edit/id">
+                    <Button title="edit">
+                      <RiDeleteBin6Fill />
+                    </Button>
+                  </Link>
+                  {/* TODO 分页在添加数据库后加入 */}
                 </div>
               </td>
             </tr>
