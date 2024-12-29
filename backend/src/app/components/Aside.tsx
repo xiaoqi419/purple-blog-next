@@ -1,32 +1,42 @@
 "use client"
 
 import Link from "next/link"
-import { IoHome } from "react-icons/io5"
+import { IoHome, IoSettingsOutline } from "react-icons/io5"
 import { BsPostcard } from "react-icons/bs"
-import { MdOutlineAddPhotoAlternate } from "react-icons/md"
-import { IoSettingsOutline } from "react-icons/io5"
-import { MdOutlinePending } from "react-icons/md"
-import { useRouter, usePathname } from "next/navigation"
+import { MdOutlineAddPhotoAlternate, MdOutlinePending } from "react-icons/md"
+import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function Aside() {
   const router = useRouter()
   const pathname = usePathname()
-  const [clicked, SetClicked] = useState(false)
-  const [activeLink, SetActiveLink] = useState("/")
-
-  const handleClick = () => {
-    SetClicked(!clicked)
-  }
+  const [clicked, setClicked] = useState(false)
+  const [activeLink, setActiveLink] = useState("/")
 
   const handleLinkClick = (link: string) => {
-    SetActiveLink(link)
-    SetClicked(false)
+    setActiveLink(link)
+    setClicked(false)
   }
 
   useEffect(() => {
-    // 设置当前激活的链接
-    SetActiveLink(pathname)
+    const cachedActiveLink = localStorage.getItem("activeLink")
+    if (cachedActiveLink) {
+      setActiveLink(cachedActiveLink) // 恢复缓存的激活路径
+    } else {
+      setActiveLink(pathname) // 如果没有缓存，使用当前路径作为激活项
+    }
+  }, [pathname])
+
+  // 每当 activeLink 发生变化时更新 localStorage 中的激活状态
+  useEffect(() => {
+    if (activeLink) {
+      localStorage.setItem("activeLink", activeLink) // 缓存激活的路径
+    }
+  }, [activeLink])
+
+  // 每次路径变化时更新 activeLink 状态
+  useEffect(() => {
+    setActiveLink(pathname) // 当路由变化时更新激活项
   }, [pathname])
 
   return (

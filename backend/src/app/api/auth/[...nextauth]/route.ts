@@ -12,6 +12,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET_KEY as string, // 目前生产环境是必须的
   session: {
     strategy: "jwt",
+    maxAge: 24 * 60 * 60, // 会话过期时间，单位：秒
   },
   pages: {
     signIn: "/login", // 自定义登录页面
